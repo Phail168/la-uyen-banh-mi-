@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>La Uyen Banh Mi — Toronto</title>
+  <meta name="description" content="Modern Vietnamese bánh mì, made fresh daily in Toronto. House pickles, fresh chili, homestyle garlic mayo." />
+  <style>
+    :root{
+      --bg:#fbf7f0;
+      --card:#ffffff;
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --accent:#e86a2a;
+      --accent-2:#0f766e;
+      --ring: rgba(232,106,42,.25);
+      --shadow: 0 14px 40px rgba(17,24,39,.10);
+      --radius: 20px;
+      --max: 1100px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background:
+        radial-gradient(900px 500px at 15% 0%, rgba(232,106,42,.10), transparent 60%),
+        radial-gradient(900px 500px at 85% 0%, rgba(15,118,110,.10), transparent 60%),
+        var(--bg);
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(251,247,240,.72);
+      border-bottom: 1px solid rgba(31,41,55,.08);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .mark{
+      width:36px; height:36px; border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), #f2a34a);
+      box-shadow: 0 10px 24px var(--ring);
+      display:grid; place-items:center;
+      color:#fff; font-weight:900;
+    }
+    .links{
+      display:flex; gap:18px; align-items:center;
+      color:var(--muted);
+      font-weight:600;
+    }
+    .links a{
+      text-decoration:none;
+      padding:10px 10px;
+      border-radius:12px;
+    }
+    .links a:hover{background: rgba(31,41,55,.05); color:var(--ink)}
+    .cta{
+      display:flex; gap:10px; align-items:center;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid rgba(31,41,55,.10);
+      background:#fff;
+      box-shadow: 0 10px 26px rgba(17,24,39,.06);
+      transition: transform .12s ease, box-shadow .12s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow: 0 14px 32px rgba(17,24,39,.10)}
+    .btn.primary{
+      background: var(--accent);
+      color:#fff;
+      border-color: rgba(232,106,42,.35);
+      box-shadow: 0 16px 34px var(--ring);
+    }
+    .btn.primary:hover{box-shadow: 0 22px 44px var(--ring)}
+    .hero{
+      padding:64px 0 22px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:28px;
+      align-items:center;
+    }
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(232,106,42,.10);
+      color: rgba(31,41,55,.85);
+      font-weight:700;
+      width:fit-content;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height:1.02;
+      letter-spacing:-.8px;
+    }
+    .sub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 54ch;
+    }
+    .bullets{
+      display:flex; flex-wrap:wrap;
+      gap:10px;
+      margin: 10px 0 22px;
+      color: rgba(31,41,55,.85);
+      font-weight:600;
+    }
+    .pill{
+      padding:10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(31,41,55,.10);
+      background: rgba(255,255,255,.72);
+    }
+    .hero-card{
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(31,41,55,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      overflow:hidden;
+      position:relative;
+      min-height: 260px;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute; inset:-80px -80px auto auto;
+      width:220px; height:220px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(232,106,42,.35), transparent 60%);
+      filter: blur(2px);
+    }
+    .hero-card:after{
+      content:"";
+      position:absolute; inset:auto auto -90px -90px;
+      width:260px; height:260px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(15,118,110,.30), transparent 60%);
+      filter: blur(2px);
+    }
+    .mini-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      position:relative;
+      z-index:1;
+    }
+    .mini{
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(31,41,55,.10);
+      border-radius: 16px;
+      padding: 14px 14px 12px;
+    }
+    .mini .t{font-weight:800; margin:0 0 6px}
+    .mini .d{margin:0; color:var(--muted); font-size:14px; line-height:1.45}
+    section{padding: 34px 0}
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:18px; margin-bottom:18px;
+    }
+    h2{
+      margin:0;
+      font-size: clamp(24px, 3vw, 34px);
+      letter-spacing:-.4px;
+    }
+    .section-note{margin:0; color:var(--muted); max-width: 60ch; line-height:1.6}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    .card{
+      grid-column: span 6;
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(31,41,55,.10);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 40px rgba(17,24,39,.08);
+      padding: 18px;
+    }
+    .card h3{margin:0 0 8px; font-size:18px}
+    .card p{margin:0; color:var(--muted); line-height:1.55}
+    .tagrow{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+    .tag{
+      font-size: 12px;
+      font-weight:700;
+      color: rgba(31,41,55,.85);
+      background: rgba(31,41,55,.05);
+      border: 1px solid rgba(31,41,55,.08);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+    .menu{
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(31,41,55,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .menu-item{
+      display:flex; justify-content:space-between; gap:16px;
+      padding: 14px 12px;
+      border-radius: 16px;
+    }
+    .menu-item + .menu-item{border-top: 1px solid rgba(31,41,55,.08)}
+    .mi-left{min-width:0}
+    .mi-title{font-weight:850; margin:0 0 6px}
+    .mi-desc{margin:0; color:var(--muted); line-height:1.5}
+    .mi-right{color:var(--muted); font-weight:700; white-space:nowrap}
+    .fine{margin:14px 10px 6px; color:var(--muted); font-size: 13px; line-height: 1.55}
+    .split{
+      display:grid; grid-template-columns: 1fr 1fr; gap:16px;
+    }
+    .contact{
+      display:grid; grid-template-columns: 1fr 1fr; gap:16px;
+    }
+    .box{
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(31,41,55,.10);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 14px 40px rgba(17,24,39,.08);
+    }
+    .box h3{margin:0 0 10px}
+    .box p{margin:0; color:var(--muted); line-height:1.6}
+    footer{
+      padding: 26px 0 36px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footer-row{
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      border-top: 1px solid rgba(31,41,55,.10);
+      padding-top: 18px;
+    }
+    .mobile-toggle{display:none}
+    @media (max-width: 900px){
+      .hero{grid-template-columns: 1fr; padding-top: 40px}
+      .card{grid-column: span 12}
+      .contact{grid-template-columns: 1fr}
+      .links{display:none}
+      .mobile-toggle{
+        display:inline-flex;
+        padding:10px 12px;
+        border-radius:14px;
+        border:1px solid rgba(31,41,55,.10);
+        background:#fff;
+        font-weight:800;
+        text-decoration:none;
+      }
+      .mobile-menu{
+        display:none;
+        padding: 10px 0 6px;
+      }
+      .mobile-menu a{
+        display:block;
+        padding: 12px 12px;
+        border-radius: 14px;
+        text-decoration:none;
+        color: var(--muted);
+        font-weight:700;
+      }
+      .mobile-menu a:hover{background: rgba(31,41,55,.05); color: var(--ink)}
+    }
+  
+    /* Signature gallery */
+    .sig-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      position:relative;
+      z-index:1;
+    }
+    .sig{
+      position:relative;
+      display:block;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(31,41,55,.10);
+      background: rgba(255,255,255,.70);
+      box-shadow: 0 10px 26px rgba(17,24,39,.06);
+      text-decoration:none;
+    }
+    .sig img{
+      width:100%;
+      height:auto;
+      display:block;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      transform: scale(1.01);
+      transition: transform .18s ease;
+    }
+    .sig:hover img{ transform: scale(1.04); }
+    .sig span{
+      position:absolute;
+      left:10px; right:10px; bottom:10px;
+      padding:8px 10px;
+      border-radius:12px;
+      background: rgba(17,24,39,.55);
+      color:#fff;
+      font-weight:850;
+      font-size:13px;
+      letter-spacing:.1px;
+      backdrop-filter: blur(8px);
+      opacity:0;
+      transform: translateY(6px);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .sig:hover span{ opacity:1; transform: translateY(0); }
+    @media (hover: none){
+      .sig span{ opacity:1; transform:none; }
+    }
+
+    /* Menu thumbs */
+    .mi-row{ display:flex; gap:14px; align-items:flex-start; }
+    .thumb{
+      width:86px; height:86px;
+      border-radius:16px;
+      object-fit:cover;
+      border:1px solid rgba(31,41,55,.10);
+      box-shadow: 0 10px 26px rgba(17,24,39,.06);
+      flex: 0 0 auto;
+      background:#fff;
+    }
+    @media (max-width: 520px){
+      .mi-row{ gap:12px; }
+      .thumb{ width:72px; height:72px; border-radius:14px; }
+    }
+
+  
+    .mi-right{color: rgba(31,41,55,.70); font-weight:800}
+    .mi-right.price{color: rgba(31,41,55,.85)}
+    .badge{
+      display:inline-flex; align-items:center; gap:6px;
+      font-size: 12px;
+      font-weight:800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(232,106,42,.30);
+      background: rgba(232,106,42,.10);
+      color: rgba(31,41,55,.85);
+      margin-left: 10px;
+      vertical-align: middle;
+      white-space:nowrap;
+    }
+    .menu-item.premium{
+      background: rgba(232,106,42,.06);
+      border-radius: 18px;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="mark">LU</div>
+        <div>La Uyen Banh Mi</div>
+      </div>
+
+      <nav class="links" aria-label="Primary">
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#vibes">Vietnam × Toronto</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="cta">
+        <a class="mobile-toggle" href="#nav" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu">Menu</a>
+        <a class="btn primary" href="#menu">View Menu</a>
+      </div>
+    </div>
+
+    <div class="wrap mobile-menu" id="mobileMenu" aria-label="Mobile">
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#vibes">Vietnam × Toronto</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="top">
+      <div>
+        <div class="kicker">Modern café vibes • Toronto</div>
+        <h1>Modern Vietnamese bánh mì,<br/>made fresh daily.</h1>
+        <p class="sub">Bold flavour, clean ingredients, and a little heat — built on house-made pickles and homestyle garlic mayo.</p>
+
+        <div class="bullets">
+          <div class="pill">Fresh-baked bread</div>
+          <div class="pill">Pickled daikon veggies</div>
+          <div class="pill">Green scallions</div>
+          <div class="pill">Fresh chili peppers</div>
+          <div class="pill">Homestyle garlic mayonnaise</div>
+        </div>
+
+        <div class="cta" style="margin-top:10px">
+          <a class="btn primary" href="#menu">View Menu</a>
+          <a class="btn" href="#contact">Catering &amp; inquiries</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Signature gallery">
+        <div class="sig-grid">
+          <a class="sig" href="#menu" aria-label="BBQ Roast Pork">
+            <img src="bbq-roast-pork.png" alt="BBQ Roast Pork bánh mì" />
+            <span>BBQ Roast Pork</span>
+          </a>
+          <a class="sig" href="#menu" aria-label="OG Vietnamese Cold Cuts">
+            <img src="og-cold-cuts.png" alt="OG Vietnamese cold cuts bánh mì" />
+            <span>OG Cold Cuts</span>
+          </a>
+          <a class="sig" href="#menu" aria-label="Grilled Chicken">
+            <img src="grilled-chicken.png" alt="Grilled chicken bánh mì" />
+            <span>Grilled Chicken</span>
+          </a>
+          <a class="sig" href="#menu" aria-label="Beef (Kalbi-Style)">
+            <img src="beef-kalbi.png" alt="Beef (Kalbi-style) bánh mì" />
+            <span>Beef (Kalbi-Style)</span>
+          </a>
+        </div>
+      </aside>
+    </section>
+
+    <section id="gallery">
+      <div class="section-head">
+        <div>
+          <h2>Gallery</h2>
+          <p class="section-note">AI-generated placeholders for the draft — we can swap in real photos anytime.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card" style="grid-column: span 4; padding: 12px;">
+          <a class="sig" href="#menu" style="border-radius:16px;">
+            <img src="bbq-roast-pork.png" alt="BBQ Roast Pork bánh mì" style="aspect-ratio: 4 / 3;" />
+            <span>BBQ Roast Pork</span>
+          </a>
+        </div>
+        <div class="card" style="grid-column: span 4; padding: 12px;">
+          <a class="sig" href="#menu" style="border-radius:16px;">
+            <img src="og-cold-cuts.png" alt="OG Vietnamese cold cuts bánh mì" style="aspect-ratio: 4 / 3;" />
+            <span>OG Cold Cuts</span>
+          </a>
+        </div>
+        <div class="card" style="grid-column: span 4; padding: 12px;">
+          <a class="sig" href="#menu" style="border-radius:16px;">
+            <img src="grilled-chicken.png" alt="Grilled chicken bánh mì" style="aspect-ratio: 4 / 3;" />
+            <span>Grilled Chicken</span>
+          </a>
+        </div>
+        <div class="card" style="grid-column: span 6; padding: 12px;">
+          <a class="sig" href="#menu" style="border-radius:16px;">
+            <img src="beef-kalbi.png" alt="Beef (Kalbi-style) bánh mì" style="aspect-ratio: 16 / 9;" />
+            <span>Beef (Kalbi-Style)</span>
+          </a>
+        </div>
+        <div class="card" style="grid-column: span 6; padding: 12px;">
+          <a class="sig" href="#menu" style="border-radius:16px;">
+            <img src="salami-sausage.png" alt="Vietnamese salami sausage bánh mì" style="aspect-ratio: 16 / 9;" />
+            <span>Salami Sausage</span>
+          </a>
+        </div>
+      </div>
+      <p class="fine">Tip: If you want this to look even more “real”, we can generate matching packaging shots (paper wrap + logo sticker) next.</p>
+    </section>
+
+    <section id="vibes">
+      <div class="section-head">
+        <div>
+          <h2>Vietnam × Toronto</h2>
+          <p class="section-note">A quick visual moodboard — the flavours we love, plus a little hometown energy.</p>
+        </div>
+      </div>
+
+      <div class="box" style="padding: 14px;">
+        <img src="la-uyen-collage.png" alt="Bánh mì and landmarks moodboard: Vietnam and Toronto" style="width:100%; height:auto; border-radius: 16px; display:block;" />
+      </div>
+      <p class="fine">These are AI-generated placeholder visuals for the draft concept page.</p>
+    </section>
+
+    <section id="menu">
+      <div class="section-head">
+        <div>
+          <h2>Menu</h2>
+          <p class="section-note">Five sandwiches, done right. Simple, fresh, and built for repeat cravings.</p>
+        </div>
+        <a class="btn" href="#contact">Ask about catering</a>
+      </div>
+
+      <div class="menu" role="list">
+        <div class="menu-item" role="listitem">
+          <div class="mi-left">
+            <div class="mi-row">
+              <img class="thumb" src="bbq-roast-pork.png" alt="BBQ Roast Pork Bánh Mì photo" />
+              <div>
+                <p class="mi-title">BBQ Roast Pork Bánh Mì<span class="badge">House Favorite</span></p>
+                <p class="mi-desc">Smoky BBQ pork, pickled daikon veggies, green scallions, fresh chili, homestyle garlic mayo.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-right price">$10.00</div>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="mi-left">
+            <div class="mi-row">
+              <img class="thumb" src="og-cold-cuts.png" alt="OG Vietnamese Cold Cuts Bánh Mì photo" />
+              <div>
+                <p class="mi-title">OG Vietnamese Cold Cuts Bánh Mì</p>
+                <p class="mi-desc">Classic Vietnamese cold cuts with crisp pickles, scallions, fresh chili, and garlic mayo.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-right price">$9.50</div>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="mi-left">
+            <div class="mi-row">
+              <img class="thumb" src="grilled-chicken.png" alt="Grilled Chicken Bánh Mì photo" />
+              <div>
+                <p class="mi-title">Grilled Chicken Bánh Mì</p>
+                <p class="mi-desc">Marinated grilled chicken, pickled daikon veggies, scallions, fresh chili, garlic mayo.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-right price">$10.50</div>
+        </div>
+
+        <div class="menu-item premium" role="listitem">
+          <div class="mi-left">
+            <div class="mi-row">
+              <img class="thumb" src="beef-kalbi.png" alt="Beef (Kalbi-Style) Bánh Mì photo" />
+              <div>
+                <p class="mi-title">Beef (Kalbi-Style) Bánh Mì<span class="badge">Premium</span></p>
+                <p class="mi-desc">Sweet-savory beef, house pickles, green scallions, fresh chili, garlic mayo.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-right price">$12.00</div>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="mi-left">
+            <div class="mi-row">
+              <img class="thumb" src="salami-sausage.png" alt="Vietnamese Salami Sausage Bánh Mì photo" />
+              <div>
+                <p class="mi-title">Vietnamese Salami Sausage Bánh Mì</p>
+                <p class="mi-desc">Savory salami-style sausage, crunchy pickles, chili heat, creamy garlic mayo.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mi-right price">$9.00</div>
+        </div>
+
+        <p class="fine"><strong>Included on every sandwich:</strong> green scallion, pickled daikon veggies, fresh chili peppers, and homestyle garlic mayonnaise.</p>
+        <p class="fine">Prices are placeholders for now — you can add them anytime.</p>
+
+        <div class="box" style="margin: 14px 10px 6px;">
+          <h3 style="margin:0 0 10px; font-size:16px;">Combos</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.6;">
+            <strong>Combo A:</strong> Any sandwich + drink <span style="white-space:nowrap;">(+ $3.50)</span><br/>
+            <strong>Combo B:</strong> Any sandwich + drink + side <span style="white-space:nowrap;">(+ $5.50)</span><br/>
+            <span style="display:inline-block; margin-top:8px;">Sides: chips, pickled veggie cup, or seasonal special.</span>
+          </p>
+        </div>
+
+        <p class="fine"><strong>Pricing note:</strong> Prices are mock placeholders for this draft concept. Taxes not included. Subject to change.</p>
+
+      </div>
+    
+    <section id="drinks">
+      <div class="section-head">
+        <div>
+          <h2>Drinks</h2>
+          <p class="section-note">Simple, refreshing pairings for bánh mì.</p>
+        </div>
+      </div>
+
+      <div class="menu" role="list">
+        <div class="menu-item" role="listitem">
+          <div class="mi-left">
+            <p class="mi-title">Vietnamese Iced Coffee</p>
+            <p class="mi-desc">Bold, smooth, lightly sweetened.</p>
+          </div>
+          <div class="mi-right price">$4.50</div>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="mi-left">
+            <p class="mi-title">Calamansi Lemonade</p>
+            <p class="mi-desc">Bright, citrusy, and refreshing.</p>
+          </div>
+          <div class="mi-right price">$4.00</div>
+        </div>
+
+        <div class="menu-item" role="listitem">
+          <div class="mi-left">
+            <p class="mi-title">Canned Pop</p>
+            <p class="mi-desc">Assorted flavours.</p>
+          </div>
+          <div class="mi-right price">$2.50</div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="about">
+      <div class="section-head">
+        <div>
+          <h2>About</h2>
+          <p class="section-note">A modern café take on Vietnamese comfort food — inspired by family recipes and made to be shared.</p>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="box">
+          <h3>Our approach</h3>
+          <p>Simple, fresh, and bold. We focus on quality ingredients and consistent flavour — with just the right crunch, tang, and heat.</p>
+          <div class="tagrow">
+            <span class="tag">Fresh daily</span>
+            <span class="tag">House pickles</span>
+            <span class="tag">Garlic mayo</span>
+            <span class="tag">Modern café</span>
+          </div>
+        </div>
+        <div class="box">
+          <h3>For your wife’s vision</h3>
+          <p>This page is a temp draft to capture the vibe and menu direction. We can add photos, pricing, and online ordering later — only if you want.</p>
+          <div class="tagrow">
+            <span class="tag">Temp draft</span>
+            <span class="tag">Easy to expand</span>
+            <span class="tag">Mobile-friendly</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-head">
+        <div>
+          <h2>Contact</h2>
+          <p class="section-note">Catering, pop-ups, and inquiries — reach out anytime.</p>
+        </div>
+      </div>
+
+      <div class="contact">
+        <div class="box">
+          <h3>Toronto, ON</h3>
+          <p><strong>Email:</strong> hello@lauyenbanhmi.com <span style="color:var(--muted)">(placeholder)</span></p>
+<p style="margin-top:8px;"><strong>Hours:</strong> Soft opening — hours may vary</p>
+          <p style="margin-top:10px"><strong>Instagram:</strong> @lauyenbanhmi <span style="color:var(--muted)">(placeholder)</span></p>
+          <div class="tagrow" style="margin-top:14px">
+            <a class="btn" href="#menu">Menu</a>
+            <a class="btn primary" href="#top">Back to top</a>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>Notes</h3>
+          <p>If you want, we can add:</p>
+          <ul style="margin:10px 0 0; padding-left: 18px; color:var(--muted); line-height:1.7">
+            <li>real food photos (or AI mock photos)</li>
+            <li>prices + combos</li>
+            <li>pickup ordering link</li>
+            <li>Google Maps location</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-row">
+        <div>© <span id="year"></span> La Uyen Banh Mi — Toronto</div>
+        <div>Built with love, crunch, and just enough heat.</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Mobile menu toggle
+    const toggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function isMobile() {
+      return window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
+    }
+
+    function setExpanded(val){
+      toggle.setAttribute('aria-expanded', String(val));
+      mobileMenu.style.display = val ? 'block' : 'none';
+    }
+
+    if (toggle && mobileMenu) {
+      toggle.addEventListener('click', (e) => {
+        if (!isMobile()) return; // desktop uses normal nav
+        e.preventDefault();
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        setExpanded(!expanded);
+      });
+
+      // Close menu after click
+      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setExpanded(false)));
+      // Start closed
+      setExpanded(false);
+    }
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
